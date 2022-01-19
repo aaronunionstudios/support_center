@@ -21,26 +21,38 @@ export default {
       error: null,
     };
   },
-  created() {
-    fetch('http://localhost:3000/questions')
-      .then((response) => {
-        if (response.ok) {
-          // Returns a new promise
-          return response.json();
-        } else {
-          return Promise.reject("error");
-        }
-      })
-      .then((result) => {
-        // Success
-        console.log("JSON:", result);
-        this.questions = result
-      })
-      .catch((e) => {
-        // Failure
-        console.error(e);
-        this.error = e
-      });
-  },
+//   created() {
+//     fetch('http://localhost:3000/questions')
+//       .then((response) => {
+//         if (response.ok) {
+//           // Returns a new promise
+//           return response.json();
+//         } else {
+//           return Promise.reject("error");
+//         }
+//       })
+//       .then((result) => {
+//         // Success
+//         console.log("JSON:", result);
+//         this.questions = result
+//       })
+//       .catch((e) => {
+//         // Failure
+//         console.error(e);
+//         this.error = e
+//       });
+//   },
+      async created () {
+          try {
+              const response = await fetch('http://localhost:3000/questions')
+              if (response.ok) {
+                  this.questions = await response.json()
+              } else {
+                  throw new Error('error')
+              }
+          } catch (e) {
+              this.error = e
+          }
+      },
 };
 </script>
