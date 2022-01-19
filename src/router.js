@@ -6,12 +6,13 @@ import FAQ from './components/FAQ.vue'
 Vue.use(VueRouter)
 
 const routes = [
-    {path: '/', name: 'home', compoent: Home},
-    {path: '/faq', name: 'faq', compoent: FAQ},
+    {path: '/', name: 'home', component: Home},
+    {path: '/faq', name: 'faq', component: FAQ},
 ]
 
 const router = new VueRouter({
     routes,
+    mode: 'history',
 })
 
 export default router
