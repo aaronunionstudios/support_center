@@ -5,18 +5,27 @@ export default function (resources) {
                 remoteDataLoading: 0,
             }
 
+            // initalize data properties
+            initData.remoteErrors = {}
             for (const key in resources) {
                 initData[key] = null
+                initData.remoteErrors[key] = null
             }
             return initData
         },
         methods: {
             async fetchResource (key, url){
-              try {
+              this.$data.remoteDataLoading++
+              // Reset error
+              this.$data.remoteErrors[key] = null
+                try {
                 this.$data[key] = await this.$fetch(url)
               } catch (e) {
-                console.error(e)
+                // console.error(e)
+                // Put error
+                this.$data.remoteErrors[key] = e
               }
+              this.$data.remoteDataLoading--
             },
         },
         created () {
@@ -24,6 +33,16 @@ export default function (resources) {
                 let url = resources[key]
                 this.fetchResource(key, url)
             }
+        },
+        computed: {
+            remoteDataBusy() {
+                return this.$data.remoteDataLoading !==0
+            },
+            hasRemoteErrors () {
+                return Object.keys(this.$data.remoteErrors).some( 
+                    key => this.$data.remoteErrors[key]
+                )
+            },
         },
     }
 }
