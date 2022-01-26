@@ -60,4 +60,5 @@ export default {
 //       });
 //   },
 };
+console.log(this.$state)
 </script>
