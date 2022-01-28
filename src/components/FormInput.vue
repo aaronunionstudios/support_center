@@ -7,6 +7,7 @@
             :type="type"
             :value.prop="value"
             :placeholder="placeholder"
+            @input="update"
             />
     </div>
 </template>
@@ -37,6 +38,11 @@ export default {
             return {
                 'invalid': this.invalid,
             }
+        },
+    },
+    methods: {
+        update (event) {
+            this.$emit('input', event.currentTarget.value)
         },
     },
 }

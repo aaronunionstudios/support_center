@@ -5,6 +5,7 @@
             <form-input
                 name="username"
                 :value="username"
+                v-model="username"
                 placeholder="Username" />
         </form>
     </main>
