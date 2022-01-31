@@ -5,7 +5,7 @@
             :class="inputClass"
             :name="name"
             :type="type"
-            :value.prop="value"
+            :value="text"
             :placeholder="placeholder"
             @input="update"
             />
@@ -22,7 +22,7 @@ export default {
             type: String,
             default: 'text',
         },
-        value: {
+        text: {
             required: true,
         },
         placeholder: {
@@ -42,8 +42,12 @@ export default {
     },
     methods: {
         update (event) {
-            this.$emit('input', event.currentTarget.value)
+            this.$emit('update', event.currentTarget.value)
         },
+    },
+    model: {
+        prop: 'text',
+        event: 'update',
     },
 }
 </script>

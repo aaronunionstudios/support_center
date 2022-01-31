@@ -15,8 +15,23 @@
 export default {
     data () {
         return {
+            mode: 'login',
             username: '',
+            password: '',
+            password2: '',
+            email: '',
         }
+    },
+    computed: {
+        title () {
+            switch (this.mode) {
+                case 'login' : return 'Login'
+                case 'signup' : return 'Create a new account'
+            }
+        },
+        retypePasswordError () {
+            return this.password2 && this.password !== this.password2
+        },
     },
 }
 </script>
