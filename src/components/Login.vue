@@ -39,5 +39,16 @@ export default {
             return this.username && this.password && (this.mode !== 'signup' || this.signupValid)
         },
     },
+    methods: {
+        async operation() {
+            awaitthis[this.mode] ()
+        },
+        async login () {
+            // todo
+        },
+        async signup () {
+            //todo
+        },
+    }
 }
 </script>
