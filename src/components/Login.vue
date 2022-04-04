@@ -94,13 +94,21 @@ export default {
     },
     methods: {
         async operation() {
-            awaitthis[this.mode] ()
+            await this[this.mode] ()
         },
         async login () {
             // todo
         },
         async signup () {
-            //todo
+            await this.$fetch('signup', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: this.username,
+                    password: this.password,
+                    email: this.email,
+                }),
+            })
+            this.mode = 'login'
         },
     }
 }
