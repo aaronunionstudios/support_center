@@ -97,7 +97,14 @@ export default {
             await this[this.mode] ()
         },
         async login () {
-            // todo
+            this.$state.user = await this.$fetch('login', {
+                method: 'POST',
+                body: JSON.stringify({
+                    username: this.username,
+                    password: this.password,
+                }),
+            })
+            this.$router.push({ name: 'home' })
         },
         async signup () {
             await this.$fetch('signup', {
